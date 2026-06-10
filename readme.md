@@ -5,3 +5,12 @@
 - Preorder Traversal (Recursive & Iterative)
 - Postorder Traversal (Recursive & Iterative)
 - Level Order Traversal
+
+### 📅 June 10, 2026
+- Same Tree
+- Binary Tree Paths
+- Lowest Common Ancestor
+- Balanced Binary Tree
+- Diameter of Binary Tree
+
+
