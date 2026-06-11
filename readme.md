@@ -13,4 +13,9 @@
 - Balanced Binary Tree
 - Diameter of Binary Tree
 
+### 📅 June 11, 2026
+- Maximum Depth
+- Zigzag Traversal
+
+
 
