@@ -17,5 +17,7 @@
 - Maximum Depth
 - Zigzag Traversal
 
-
-
+### 📅 June 23, 2026
+- Maximum Path Sum
+- Left/Right View of Binary Tree
+- Top View of Binary Tree
