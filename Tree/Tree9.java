@@ -30,61 +30,102 @@ public class Tree9 {
         }
     }
 
-    public static int leftM;
-    public static int rightM;
+    // Method 1:
+    // public static int leftM;
+    // public static int rightM;
 
-    public static void Find(Node root, int pos) {
-        if (root == null)
-            return;
+    // public static void Find(Node root, int pos) {
+    // if (root == null)
+    // return;
 
-        leftM = Math.min(leftM, pos);
-        rightM = Math.max(rightM, pos);
+    // leftM = Math.min(leftM, pos);
+    // rightM = Math.max(rightM, pos);
 
-        Find(root.left, pos - 1);
-        Find(root.right, pos + 1);
+    // Find(root.left, pos - 1);
+    // Find(root.right, pos + 1);
 
-    }
+    // }
 
-    public static void topView(Node root, int[] arr, int pos) {
+    // public static void topView(Node root, int[] arr, int pos) {
+    // Queue<Pair> q = new LinkedList<>();
+    // q.offer(new Pair(root, pos));
+
+    // while (!q.isEmpty()) {
+    // Pair p = q.poll();
+    // Node temp = p.node;
+    // int idx = p.idx;
+
+    // if (temp.left != null)
+    // q.offer(new Pair(temp.left, idx - 1));
+    // if (temp.right != null)
+    // q.offer(new Pair(temp.right, idx + 1));
+
+    // if (arr[idx] == 0) {
+    // arr[idx] = temp.data;
+    // }
+    // }
+    // }
+
+    public static List<Integer> topView(Node root) {
+        List<Integer> list = new ArrayList<>();
         Queue<Pair> q = new LinkedList<>();
-        q.offer(new Pair(root, pos));
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+
+        q.offer(new Pair(root, 0));
 
         while (!q.isEmpty()) {
             Pair p = q.poll();
-            Node temp = p.node;
-            int idx = p.idx;
 
-            if (temp.left != null)
-                q.offer(new Pair(temp.left, idx - 1));
-            if (temp.right != null)
-                q.offer(new Pair(temp.right, idx + 1));
+            if (p.node.left != null)
+                q.offer(new Pair(p.node.left, p.idx - 1));
 
-            if (arr[idx] == 0) {
-                arr[idx] = temp.data;
+            if (p.node.right != null)
+                q.offer(new Pair(p.node.right, p.idx + 1));
+
+            if (!map.containsKey(p.idx)) {
+                map.put(p.idx, p.node.data);
             }
-
         }
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            list.add(entry.getValue());
+        }
+
+        return list;
     }
 
     public static void main(String[] args) {
         Node root = new Node(1);
-        root.right = new Node(2);
-        root.right.right = new Node(3);
-        root.right.right.right = new Node(4);
 
-        leftM = 0;
-        rightM = 0;
-        Find(root, 0);
+        root.left = new Node(2);
+        root.right = new Node(3);
 
-        int size = rightM - leftM + 1;
-        System.out.println(size);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
 
-        int[] topViewArr = new int[size];
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
 
-        topView(root, topViewArr, Math.abs(leftM));
+        root.left.left.left = new Node(8);
+        root.right.right.right = new Node(9);
 
-        for (int i = 0; i < size; i++) {
-            System.out.print(topViewArr[i] + " ");
+        // leftM = 0;
+        // rightM = 0;
+        // Find(root, 0);
+
+        // int size = rightM - leftM + 1;
+        // int[] topViewArr = new int[size];
+
+        // topView(root, topViewArr, Math.abs(leftM));
+
+        // for (int i = 0; i < size; i++) {
+        // System.out.print(topViewArr[i] + " ");
+        // }
+
+        List<Integer> ans = topView(root);
+
+        for (int i = 0; i < ans.size(); i++) {
+            System.out.print(ans.get(i) + " ");
         }
 
     }
